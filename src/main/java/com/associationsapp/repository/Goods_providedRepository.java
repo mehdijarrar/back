@@ -14,7 +14,7 @@ public interface Goods_providedRepository extends JpaRepository<Goods_provided,L
     @Query("select g from Goods_provided g where g.enabled = ?1")
     List<Goods_provided> findByEnabled(Boolean a) ;
 
-    @Query("select SUM(g.amount) from Goods_provided g where g.goods_id = ?1")
+    @Query("select SUM(g.amount) from Goods_provided g where g.goods_id = ?1 AND g.enabled=true ")
     Long findAmountByGoods_id(Long id);
 
     @Modifying

@@ -1,4 +1,5 @@
 package com.associationsapp.controllers;
+import com.associationsapp.dto.CreateEventDto;
 import com.associationsapp.dto.ListEventDto;
 import com.associationsapp.model.Event;
 import com.associationsapp.model.NotifToken;
@@ -45,7 +46,18 @@ public class UsersController {
         }
         return Liste ;
     }
+    @RequestMapping(value = "/user/{id}", method = RequestMethod.GET)
+    public UserDto allGoods(@PathVariable Long id){
+        User user = userRepository.getOne(id) ;
+        UserDto dto = new UserDto() ;
+        dto.setRole(user.getRole());
+        dto.setEmail(user.getEmail());
+        dto.setLastname(user.getLastname());
+        dto.setFirstname(user.getFirstname());
+        dto.setId(user.getId());
+        return dto ;
 
+    }
 
     @RequestMapping(value = "/Removeuser" , method = RequestMethod.POST)
     public  void removeUser(@RequestBody long a){
